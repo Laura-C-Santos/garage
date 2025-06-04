@@ -1,5 +1,6 @@
 package local.laura.garage.repositories;
 
+import java.util.List;
 import local.laura.garage.entities.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,5 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface garageRepository extends JpaRepository<Veiculo, Long>{
+    
+    List<Veiculo> findById(long id);
     
 }
