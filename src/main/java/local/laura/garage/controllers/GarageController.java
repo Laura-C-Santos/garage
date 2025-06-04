@@ -5,6 +5,7 @@
 package local.laura.garage.controllers;
 
 import java.util.List;
+import local.laura.garage.DTO.GarageMinDTO;
 import local.laura.garage.entities.Veiculo;
 import local.laura.garage.service.GarageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,21 @@ public class GarageController {
     @GetMapping("/id/{id}")
     public ResponseEntity<List<Veiculo>> findById(@PathVariable long id){
       List<Veiculo> result = garageService.findById(id);
+        
+      if(result == null){
+          
+            return ResponseEntity.notFound().build();
+            
+        }else{
+          
+            return ResponseEntity.ok(result);
+        }
+        
+    }
+    
+    @GetMapping("/cor/{cor}")
+    public ResponseEntity<List<GarageMinDTO>> findByColorIgnoreCase(@PathVariable String cor){
+      List<GarageMinDTO> result = garageService.findByCorIgnoreCase(cor);
         
       if(result == null){
           
