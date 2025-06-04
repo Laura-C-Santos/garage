@@ -22,10 +22,11 @@ public class GarageService {
     @Autowired
     private garageRepository garageRepository;
     
-    public List<Veiculo> findAll(){
+    public List<GarageMinDTO> findAll(){
     
-        List<Veiculo> result = garageRepository.findAll();
-        return result;
+        List<Veiculo> resultGarage = garageRepository.findAll();
+        List<GarageMinDTO> resultDTO = resultGarage.stream().map(x -> new GarageMinDTO(x)).toList();
+        return resultDTO;
     }
     
     public List<Veiculo> findById(long id){

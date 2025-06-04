@@ -26,10 +26,17 @@ public class GarageController {
     private GarageService garageService;
     
     @GetMapping("/forsale")
-    public List<Veiculo> findAll(){
-    
-        List<Veiculo> result = garageService.findAll();
-        return result;
+    public ResponseEntity<List<GarageMinDTO>> findAll(){
+        List<GarageMinDTO> result = garageService.findAll();
+        if(result == null){
+          
+            return ResponseEntity.notFound().build();
+            
+        }else{
+          
+            return ResponseEntity.ok(result);
+        }
+        
     }
     
     @GetMapping("/id/{id}")
