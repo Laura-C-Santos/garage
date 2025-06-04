@@ -41,5 +41,13 @@ public class GarageService {
         
         return resultDTO;
     }
+    public List<GarageMinDTO> findByAno(int ano){
+    
+        List<Veiculo> resultGarage = garageRepository.findByAno(ano);
+        
+        List<GarageMinDTO> resultDTO = resultGarage.stream().map(x -> new GarageMinDTO(x)).toList();
+        
+        return resultDTO;
+    }
 }
 

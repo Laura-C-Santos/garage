@@ -61,4 +61,18 @@ public class GarageController {
         }
         
     }
+    @GetMapping("/ano/{ano}")
+    public ResponseEntity<List<GarageMinDTO>> findByAno(@PathVariable int ano){
+      List<GarageMinDTO> result = garageService.findByAno(ano);
+        
+      if(result == null){
+          
+            return ResponseEntity.notFound().build();
+            
+        }else{
+          
+            return ResponseEntity.ok(result);
+        }
+        
+    }
 }
